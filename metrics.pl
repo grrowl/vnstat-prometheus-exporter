@@ -18,6 +18,7 @@ my @data_resolutions = ('fiveminute', 'hour', 'day', 'month', 'year');
 my $d = HTTP::Daemon->new(
     LocalAddr => $ENV{'VNSTAT_METRICS_HOST'} // 'localhost',
     LocalPort => 9955,
+		ReuseAddr=>'1'
 ) || die "Cannot create HTTP::Daemon instance: $!";
 
 print "HTTP server listening on ", $d->url, "\n";
