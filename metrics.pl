@@ -28,7 +28,10 @@ while (my $c = $d->accept) {
     while (my $r = $c->get_request) {
         if ($r->method eq 'GET') {
             my $response_text = generate_response();
-            $c->send_response(HTTP::Response->new(RC_OK, undef, undef, $response_text));
+            my $response = HTTP::Response->new(RC_OK);
+            $response->header('Content-Type' => 'text/plain');
+            $response->content($response_text);
+            $c->send_response($response);
         } else {
             $c->send_error(RC_FORBIDDEN);
         }
@@ -38,7 +41,7 @@ while (my $c = $d->accept) {
 }
 
 sub generate_response {
-    my $response = "Content-Type: text/plain\n\n";
+    my $response = "";
 
     my $json_data = `$vnstat_cmd --json s 1`;
 
