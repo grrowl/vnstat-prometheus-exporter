@@ -5,3 +5,5 @@ perl script based on `vnstat-metrics.cgi` which listens on `5599` and returns me
 ## requirements
 
 `cpan install HTTP::Daemon`
+
+set `VNSTAT_METRICS_HOST` or it will default to localhost
