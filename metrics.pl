@@ -16,7 +16,7 @@ my @data_resolutions = ('fiveminute', 'hour', 'day', 'month', 'year');
 
 # Create an HTTP::Daemon instance listening on port 9955
 my $d = HTTP::Daemon->new(
-    # LocalAddr => 'localhost',
+    LocalAddr => 'localhost',
     LocalPort => 9955,
 ) || die "Cannot create HTTP::Daemon instance: $!";
 
